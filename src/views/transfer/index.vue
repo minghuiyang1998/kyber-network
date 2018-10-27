@@ -70,7 +70,6 @@
                 <el-button round style="float: right; padding:3px 10px;color:#ed8223;background-color:#e2e2e2" @click="balanceClick">{{ value.balance }}</el-button>
               </div>
               <el-button class="submit-button" style="padding:3px 10px;color:#fafafa;background-color:#ed8223" @click="transfer">转账</el-button>
-
             </el-col>
           </el-row>
         </div>

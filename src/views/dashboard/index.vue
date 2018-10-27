@@ -46,6 +46,7 @@
       </div>
     </div>
     <div style="padding:150px 0;background:#F7F7F7;border:solid 1px transparent">
+      <div v-if="isMove" style="padding:20px 0 20px;text-align:center;font-size: 42px;color:#000;">YMHC市场</div> 
       <el-table  :data="tableData" border="true" style="margin-top:100px;width:1200px;margin:0 auto;text-align:center;" :default-sort = "{prop: 'date', order: 'descending'}">
         <el-table-column
           prop="market"
@@ -172,7 +173,7 @@ export default {
 .box {
   width: 180px;
   height: 180px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 1);
   margin: 20px;
   border-radius: 20px;
   box-shadow: 0px 1px 4px 1px rgba(28, 28, 28, 0.2);
