@@ -61,7 +61,7 @@
                   </div>
                 </template>
               </multiselect>
-              <el-input placeholder="请输入内容" v-model="inputBalance" class="count-input">
+              <el-input placeholder="请输入转账额度" v-model="inputBalance" class="count-input">
                 <template slot="append">{{ value.name }}</template>
               </el-input>
               <div class="heading">账户余额</div>
@@ -79,19 +79,15 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'Transfer',
   data () {
     return {
       radio: 'TRANSFER',
       value: { name: 'AC', balance: '1.123', icon: 'ABT' },
-      options: [
-        { name: 'AC', balance: '1.123', icon: 'ABT' },
-        { name: 'BC', balance: '0.123', icon: 'ADX' },
-        { name: 'CC', balance: '1.213', icon: 'AST' },
-        { name: 'DC', balance: '0.432', icon: 'BNB' },
-        { name: 'EC', balance: '0.133', icon: 'CVC' }
-      ],
+      options: [],
       inputBalance: ''
     };
   },
@@ -106,6 +102,21 @@ export default {
         type: 'success'
       });
     }
+  },
+  mounted() {
+    axios.post('http://115.159.111.90:8000/api/getBalance', {
+      address: '0x754e934cb080B6F4cF0b24B4F557BDC7a51149a1'
+    }).then(res =>{
+      var icons = ['ABT','ADX','AST','BNB','CVC']
+      res.data.forEach(element => {
+        this.options.push({
+          name: element.coin.name,
+          balance: element.value,
+          icon: icons.pop()
+        })
+      });
+      this.value = this.options[0]
+    })
   }
 }
 </script>
