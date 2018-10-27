@@ -1,6 +1,15 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <img src="../../../assets/dashboard/icon.png" style="width:40px;height:40px;margin:10px 20px;;"/>
+    <router-link class="inlineBlock" to="/dashboard">
+      <span class="home">Home</span>
+    </router-link>
+    <router-link class="inlineBlock" to="/transfer">
+      <span class="transfer">Transfer</span>
+    </router-link>
+    <router-link class="inlineBlock" to="/swap">
+      <span class="swap">Swap</span>
+    </router-link>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
@@ -89,6 +98,26 @@ export default {
         font-size: 12px;
       }
     }
+  }
+  .home {
+    display: inline-block;
+    position: absolute;
+    right: 400px;
+  }
+
+  .transfer {
+    display: inline-block;
+    position: absolute;
+    right: 300px;
+  }
+  .swap {
+    display: inline-block;
+    position: absolute;
+    right: 220px;
+  }
+
+  span:hover{
+    color:#63c8a1;
   }
 }
 </style>
