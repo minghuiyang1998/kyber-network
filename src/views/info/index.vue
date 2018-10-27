@@ -118,6 +118,9 @@ h1 {
 .item{
   margin-bottom:15px;
 }
+.app-main {
+  background-color: #ffffff
+}
 
 .chip{
     font-size: 14px;

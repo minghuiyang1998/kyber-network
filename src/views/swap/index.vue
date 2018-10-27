@@ -1,7 +1,7 @@
 <template>
-  <div >
-    <div class="container">
-      <el-radio-group v-model="radio" class="redio">
+  <div class="swap-container">
+    <div class="radio-container">
+      <el-radio-group v-model="radio" class="radio">
         <router-link class="inlineBlock" to="/swap">
           <el-radio-button label="SWAP"></el-radio-button>
         </router-link>
@@ -10,7 +10,10 @@
         </router-link>
       </el-radio-group>
     </div>
-    <h1 style="text-align: center">swap</h1>
+
+    <div style="margin-top: 20px">
+      <h1 style="text-align: center">swap</h1>
+    </div>
   </div>
 </template>
 
@@ -30,14 +33,17 @@ h1 {
   font-size: 2.3rem;
   margin: 40px;
 }
-.app-main {
+.swap-container {
+  width: 100%;
+  height: 1000px;
   background-color: #f7f7f7
 }
-.container {
+.radio-container {
+  width: 100%;
   display: flex;
   justify-content: center;
 }
-.redio {
+.radio {
   margin: 50px
 }
 </style>
