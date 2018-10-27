@@ -3,6 +3,8 @@
     <!-- <div class="dashboard-text">name:{{ name }}</div> -->
     <!-- <div class="dashboard-text">roles:<span v-for="role in roles" :key="role">{{ role }}</span></div> -->
     <div id="container" style="position:relative;background-color:rgb(0,188,150);">
+      <div style="margin-top:20px;text-aligh:center;font-size: 42px;">即时而安全的代币间兑换</div>
+      <div style="text-aligh:center;font-size: 36px;">无需订单，无需充值，无需包装</div>
       <el-button id="button" v-if="!isMove" v-on:click="onAcceptButtonTap">接受条款和协议</el-button>
     </div>
     <div id="center-boxes" :style="{transform}" >
@@ -22,7 +24,7 @@ export default {
   data(){
     return{
       isMove:false,
-      transform: 'translateY(100%)'
+      transform: 'translateY(60%)'
     }
   },
   computed: {
@@ -61,13 +63,13 @@ export default {
 }
 
 #button{
-  width:200px;
-  height:70px;
-  background:#fff;
-  color:rgb(0,198,154);
-  font-weight: 600;
-  font-size: 20px;
-  border-radius: 20px;
+    width: 180px;
+    height: 58px;
+    background: #fff;
+    color: #00c69a;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 40px;
 }
 
 #button:hover{
@@ -80,7 +82,7 @@ export default {
   position:absolute; 
   flex-wrap: wrap;
   justify-content: center;
-  top:10%;
+  top:20%;
   transition:transform 2s;
   left:0;
 }
