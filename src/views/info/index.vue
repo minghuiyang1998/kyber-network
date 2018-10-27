@@ -1,31 +1,47 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">info:{{ name }}</div>
+  <div >
+    <h1 style="text-align: center">资料</h1>
+    <div class="container">
+      <div class="info-container">
+        <div class="person-info">
+        </div>
+        <div class="verify-container">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  name: 'Dashboard',
-  computed: {
-    ...mapGetters([
-      'name',
-      'roles'
-    ])
-  }
+  name: 'Dashboard'
 }
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
-  }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
+<style>
+h1 {
+  font-size: 2.3rem;
+  margin: 40px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
+.info-container {
+  width: 65%;
+  height: 200px;
+  display: inline-flex;
+}
+.person-info {
+  background-color: aqua;
+  width: 50%;
+  height: 200px;
+  margin-right: 10px
+}
+.verify-container {
+  background-color: red;
+  width: 50%;
+  height: 200px;
+  margin-left: 10px
 }
 </style>
