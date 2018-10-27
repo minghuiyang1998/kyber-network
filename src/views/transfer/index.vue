@@ -24,7 +24,7 @@
                 type="textarea"
                 :autosize="{ minRows: 6, maxRows: 10}"
                 placeholder="请输入转入账户地址"
-                v-model="textarea3">
+                v-model="inputAddress">
               </el-input>
             </el-col>
             <el-col :span="9">
@@ -88,7 +88,8 @@ export default {
       radio: 'TRANSFER',
       value: { name: 'AC', balance: '1.123', icon: 'ABT' },
       options: [],
-      inputBalance: ''
+      inputBalance: '',
+      inputAddress: ''
     };
   },
   methods: {
