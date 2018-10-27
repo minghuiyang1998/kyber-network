@@ -99,7 +99,7 @@ export default {
     transfer(){
       this.$notify({
         title: '成功',
-        message: '这是一条成功的提示消息',
+        message: '成功发起申请',
         type: 'success'
       });
     }
