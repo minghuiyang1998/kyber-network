@@ -1,20 +1,27 @@
 <template>
   <div >
-    <h1 style="text-align: center">swap</h1>
     <div class="container">
-      <div class="info-container">
-        <div class="person-info">
-        </div>
-        <div class="verify-container">
-        </div>
-      </div>
+      <el-radio-group v-model="radio" class="redio">
+        <router-link class="inlineBlock" to="/swap">
+          <el-radio-button label="SWAP"></el-radio-button>
+        </router-link>
+        <router-link class="inlineBlock" to="/transfer">
+          <el-radio-button label="TRANSFER"></el-radio-button>
+        </router-link>
+      </el-radio-group>
     </div>
+    <h1 style="text-align: center">swap</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Dashboard'
+  name: 'Swap',
+  data () {
+    return {
+      radio: 'SWAP',
+    };
+  }
 }
 </script>
 
@@ -23,25 +30,14 @@ h1 {
   font-size: 2.3rem;
   margin: 40px;
 }
+.app-main {
+  background-color: #f7f7f7
+}
 .container {
   display: flex;
   justify-content: center;
 }
-.info-container {
-  width: 65%;
-  height: 200px;
-  display: inline-flex;
-}
-.person-info {
-  background-color: aqua;
-  width: 50%;
-  height: 200px;
-  margin-right: 10px
-}
-.verify-container {
-  background-color: red;
-  width: 50%;
-  height: 200px;
-  margin-left: 10px
+.redio {
+  margin: 50px
 }
 </style>

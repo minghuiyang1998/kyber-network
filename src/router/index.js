@@ -58,6 +58,17 @@ export const constantRouterMap = [
       component: () => import('@/views/swap/index')
     }]
   },
+  {
+    path: '/transfer',
+    component: Layout,
+    redirect: '/transfer/index',
+    name: 'Transfer',
+    hidden: true,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/transfer/index')
+    }]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 
