@@ -124,7 +124,7 @@ export default {
       options: [
 
       ],
-      rates:[],
+      rates: [],
       value: { name: 'AC', balance: '1.123', icon: 'ABT' },
       value2: { name: 'BC', balance: '0.123', icon: 'ADX' }
     };
@@ -159,7 +159,7 @@ export default {
       console.log(this.value2)
       var rate = this.rates[this.value.id - 1][this.value2.id - 1]
       console.log(rate)
-      this.to_input_balance = parseInt(value*rate)
+      this.to_input_balance = parseInt(value * rate)
     },
     swapClick() {
       var id1 = this.value.id
@@ -175,6 +175,7 @@ export default {
         console.log(response.body)
         this.options = [];
         this.getBalance()
+        this.getRate()
       }).catch(function(error) {
         console.log(error)
       })
@@ -195,7 +196,15 @@ export default {
 
           this.options.push(dic);
         }
-       
+
+      }).catch(function(error) {
+        console.log(error)
+      })
+    },
+    getRate() {
+      this.$http.get("http://115.159.111.90:8000/api/getRate", { headers: "Content-Type:application/json" }).then(function(response) {
+        console.log(response.body)
+        this.rates = response.body
       }).catch(function(error) {
         console.log(error)
       })
