@@ -27,94 +27,76 @@
         <div style="display:flex;flex-direction:row;margin:10px;">
           <div>
             <div style="margin:5px;">From</div>
-            
-            <multiselect 
-                v-model="value" 
-                placeholder="选择币种" 
-                label="name" 
-                track-by="name" 
-                :options="options" 
-                :option-height="200"
-                :custom-label="customLabel" 
-                :show-labels="false"
-                @select="fromSelect" >
-                <template slot="singleLabel" slot-scope="props">
-                  <div class="display-container">
-                    <div class="coin-icon">
-                      <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
-                    </div>
-                    <div class="coin-info">
-                      <div class="option-title">{{ props.option.name }}</div>
-                      <div class="option-detail">{{ `${props.option.balance}  ${props.option.name}` }}</div>
-                    </div>
+
+            <multiselect v-model="value" placeholder="选择币种" label="name" track-by="name" :options="options" :option-height="200" :custom-label="customLabel" :show-labels="false" @select="fromSelect">
+              <template slot="singleLabel" slot-scope="props">
+                <div class="display-container">
+                  <div class="coin-icon">
+                    <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
                   </div>
-                </template>
-                <template slot="option" slot-scope="props">
-                  <div class="display-container">
-                    <div class="coin-icon" style="">
-                      <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
-                    </div>
-                    <div class="coin-info">
-                      <div class="option-title">{{ props.option.name }}</div>
-                      <div class="option-detail">{{ `${props.option.balance}  ${props.option.name}` }}</div>
-                    </div>
+                  <div class="coin-info">
+                    <div class="option-title">{{ props.option.name }}</div>
+                    <div class="option-detail">{{ `${props.option.balance} ${props.option.name}` }}</div>
                   </div>
-                </template>
-              </multiselect>
-            <el-input v-model="input_balance" placeholder="0" class="balance_input" style="width:195px;border:0;margin-top:20px;">
+                </div>
+              </template>
+              <template slot="option" slot-scope="props">
+                <div class="display-container">
+                  <div class="coin-icon" style="">
+                    <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
+                  </div>
+                  <div class="coin-info">
+                    <div class="option-title">{{ props.option.name }}</div>
+                    <div class="option-detail">{{ `${props.option.balance} ${props.option.name}` }}</div>
+                  </div>
+                </div>
+              </template>
+            </multiselect>
+            <el-input v-model="input_balance" placeholder="0" class="balance_input" @change="fromInputChange" style="width:195px;border:0;margin-top:20px;">
               <template slot="append">{{value.name}}</template>
             </el-input>
             <div style="margin-top:10px;">
               钱包余额
             </div>
             <div>
-              <span style="font-size:14px;color:gray">点击交换所有余额</span> 
+              <span style="font-size:14px;color:gray">点击交换所有余额</span>
               <el-button round style="padding:3px 10px;color:#ed8223;background-color:#e2e2e2" @click="balanceClick">{{value.balance}}</el-button>
             </div>
           </div>
           <div style="margin-left:10px;">
             <div style="margin:5px;">To</div>
-            <multiselect 
-                v-model="value2" 
-                placeholder="选择币种" 
-                label="name" 
-                track-by="name" 
-                :options="options" 
-                :option-height="200"
-                :custom-label="customLabel" 
-                :show-labels="false"
-                @select="toSelect" >
-                <template slot="singleLabel" slot-scope="props">
-                  <div class="display-container">
-                    <div class="coin-icon">
-                      <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
-                    </div>
-                    <div class="coin-info">
-                      <div class="option-title">{{ props.option.name }}</div>
-                      <div class="option-detail">{{ `${props.option.balance}  ${props.option.name}` }}</div>
-                    </div>
+            <multiselect v-model="value2" placeholder="选择币种" label="name" track-by="name" :options="options" :option-height="200" :custom-label="customLabel" :show-labels="false" @select="toSelect">
+              <template slot="singleLabel" slot-scope="props">
+                <div class="display-container">
+                  <div class="coin-icon">
+                    <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
                   </div>
-                </template>
-                <template slot="option" slot-scope="props">
-                  <div class="display-container">
-                    <div class="coin-icon" style="">
-                      <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
-                    </div>
-                    <div class="coin-info">
-                      <div class="option-title">{{ props.option.name }}</div>
-                      <div class="option-detail">{{ `${props.option.balance}  ${props.option.name}` }}</div>
-                    </div>
+                  <div class="coin-info">
+                    <div class="option-title">{{ props.option.name }}</div>
+                    <div class="option-detail">{{ `${props.option.balance} ${props.option.name}` }}</div>
                   </div>
-                </template>
-              </multiselect>
+                </div>
+              </template>
+              <template slot="option" slot-scope="props">
+                <div class="display-container">
+                  <div class="coin-icon" style="">
+                    <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
+                  </div>
+                  <div class="coin-info">
+                    <div class="option-title">{{ props.option.name }}</div>
+                    <div class="option-detail">{{ `${props.option.balance} ${props.option.name}` }}</div>
+                  </div>
+                </div>
+              </template>
+            </multiselect>
             <el-input v-model="to_input_balance" placeholder="0" class="balance_input" style="width:195px;border:0;margin-top:20px;">
               <template slot="append">{{value2.name}}</template>
             </el-input>
-            
+
           </div>
         </div>
         <div style="margin-top:20px;width:100%;display:flex;justify-content: center;align-content: center;">
-          <el-button style="background-color:#ed8223;color:white">Swap</el-button>
+          <el-button style="background-color:#ed8223;color:white" @click="swapClick">Swap</el-button>
         </div>
       </div>
 
@@ -128,7 +110,7 @@ export default {
   data() {
     return {
       radio: 'SWAP',
-      walletAddress: "0x945d8b6499F4E1f01C67D8a541478D6517343845",
+      walletAddress: "0x754e934cb080B6F4cF0b24B4F557BDC7a51149a1",
       radio2: 0,
       coins: ["ETH", "YMHC", "ABC"],
       balance: [1.001, 2, 3],
@@ -136,18 +118,15 @@ export default {
       select_value: "ETH",
       select_index: 0,
       input_balance: "",
-      to_select_value:"",
-      to_select_index:"",
-      to_input_balance:"",
+      to_select_value: "",
+      to_select_index: "",
+      to_input_balance: "",
       options: [
-        { name: 'AC', balance: '1.123', icon: 'ABT' },
-        { name: 'BC', balance: '0.123', icon: 'ADX' },
-        { name: 'CC', balance: '1.213', icon: 'AST' },
-        { name: 'DC', balance: '0.432', icon: 'BNB' },
-        { name: 'EC', balance: '0.133', icon: 'CVC' }
+
       ],
-      value:{ name: 'AC', balance: '1.123', icon: 'ABT' },
-      value2:{ name: 'BC', balance: '0.123', icon: 'ADX' }
+      rates:[],
+      value: { name: 'AC', balance: '1.123', icon: 'ABT' },
+      value2: { name: 'BC', balance: '0.123', icon: 'ADX' }
     };
   },
   methods: {
@@ -168,12 +147,98 @@ export default {
       this.value = this.options[value];
       this.input_balance = 0
     },
-    toSelect(value){
+    toSelect(value) {
       console.log(value)
       var index = this.coins.indexOf(value)
       this.to_select_index = index
-      
+
+    },
+    fromInputChange(value) {
+      console.log(value);
+      console.log(this.value)
+      console.log(this.value2)
+      var rate = this.rates[this.value.id - 1][this.value2.id - 1]
+      console.log(rate)
+      this.to_input_balance = parseInt(value*rate)
+    },
+    swapClick() {
+      var id1 = this.value.id
+      var id2 = this.value2.id
+      var dic = {
+        "address": this.walletAddress,
+        "spend_coin_id": id1,
+        "receive_coin_id": id2,
+        "spend_amount": parseInt(this.input_balance)
+      }
+      console.log(dic)
+      this.$http.post("http://115.159.111.90:8000/api/createTransfer", JSON.stringify(dic), { headers: "Content-Type:application/json" }).then(function(response) {
+        console.log(response.body)
+        this.options = [];
+        this.getBalance()
+      }).catch(function(error) {
+        console.log(error)
+      })
+    },
+    getBalance() {
+      var dic = { "address": this.walletAddress }
+      console.log(JSON.stringify(dic))
+      this.$http.post("http://115.159.111.90:8000/api/getBalance", JSON.stringify(dic), { headers: "Content-Type:application/json" }).then(function(response) {
+        console.log(response.body)
+        var arr = response.body
+        for (var i = 0, len = arr.length; i < len; i++) {
+
+          var dic = {}
+          dic.id = arr[i].id
+          dic.name = arr[i].coin.name
+          dic.balance = arr[i].value
+          dic.icon = "ABT"
+
+          this.options.push(dic);
+        }
+       
+      }).catch(function(error) {
+        console.log(error)
+      })
     }
+  },
+  mounted() {
+    var dic = { "address": this.walletAddress }
+    console.log(JSON.stringify(dic))
+    this.$http.post("http://115.159.111.90:8000/api/getBalance", JSON.stringify(dic), { headers: "Content-Type:application/json" }).then(function(response) {
+      console.log(response.body)
+      var arr = response.body
+      for (var i = 0, len = arr.length; i < len; i++) {
+
+        var dic = {}
+        dic.id = arr[i].id
+        dic.name = arr[i].coin.name
+        dic.balance = arr[i].value
+        dic.icon = "ABT"
+
+        this.options.push(dic);
+      }
+      var dic1 = {}
+      dic1.id = arr[0].id
+      dic1.name = arr[0].coin.name
+      dic1.balance = arr[0].value
+      dic1.icon = "ABT"
+      this.value = dic1;
+      var dic2 = {}
+      dic2.id = arr[1].id
+      dic2.name = arr[1].coin.name
+      dic2.balance = arr[1].value
+      dic2.icon = "ABT"
+      this.value2 = dic2;
+    }).catch(function(error) {
+      console.log(error)
+    })
+    this.$http.get("http://115.159.111.90:8000/api/getRate", { headers: "Content-Type:application/json" }).then(function(response) {
+      console.log(response.body)
+      this.rates = response.body
+    }).catch(function(error) {
+      console.log(error)
+    })
+
   }
 
 }
@@ -204,10 +269,12 @@ h1 {
 .radio {
   margin: 50px
 }
+
 .display-container {
   height: 50px;
   display: flex;
 }
+
 .container {
   display: flex;
   flex-direction: row;
@@ -245,25 +312,33 @@ h1 {
   border-radius: 30px;
   box-shadow: 1px black;
 }
+
 .coin-icon {
   width: 50px;
   display: flex;
-  justify-content: center; /* 水平居中 */
-  align-items: center;     /* 垂直居中 */
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
 }
+
 .coin-info {
   display: flex;
   flex-direction: column;
   align-items: left;
-  justify-content: center; /* 水平居中 */
+  justify-content: center;
+  /* 水平居中 */
 }
+
 .option-title {
   font-size: 24px;
   margin-bottom: 3px
 }
+
 .option-detail {
   font-size: 14px;
 }
+
 .check-item.is-checked {
   border: 1px solid #ed8223;
 }
