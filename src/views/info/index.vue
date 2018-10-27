@@ -6,14 +6,14 @@
         <div class="person-info">
           <div class="detail-info">
             <label for="profile-display-name" style="margin-bottom:10px;display:block">现实名</label>
-            <el-input v-model="input" placeholder="请输入内容" style="margin-bottom:10px"></el-input>
+            <el-input v-model="input" placeholder="Block_Chain_User" style="margin-bottom:10px"></el-input>
             <label for="profile-display-name" style="margin-bottom:10px;display:block">联系方式</label>
-            <el-select v-model="value" placeholder="请选择" style="margin-bottom:10px;display:block">
+            <el-select v-model="value" placeholder="coolHacker@hack.com" style="margin-bottom:10px;display:block">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
             <label for="profile-display-name" style="margin-bottom:10px;display:block">联系语言</label>
-            <el-select v-model="value" placeholder="请选择" style="margin-bottom:10px;display:block">
+            <el-select v-model="value" placeholder="中文" style="margin-bottom:10px;display:block">
               <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
@@ -70,7 +70,7 @@
             <h6 class="mt-8" style="font-size:16px;font-weight:500">我的钱包
               <span class="chip" style="inline-block">至多3个钱包</span>
             </h6>
-            
+            <div  class="chip" style="margin-bottom: 30px; width: 400px">0xAFa736Be5934933F510c900aB4eb90a3578701A1</div>
           </div>
 
           <div  style="display:flex;">

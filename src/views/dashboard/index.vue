@@ -42,7 +42,7 @@
         <svg-icon v-else class="icon" icon-class="key_2"/>
         <div v-if="!isMove" class="text_1">KEY</div>
         <div  v-else class="text_2">请输入您的密钥</div>
-        <el-button v-if="isMove" type="success" >请输入您的密钥</el-button> 
+        <el-button v-if="isMove" type="success" @click="onClick">请输入您的密钥</el-button> 
       </div>
     </div>
     <div style="padding:150px 0;background:#F7F7F7;border:solid 1px transparent">
@@ -143,6 +143,11 @@ export default {
     },
     getRandomInt () {
       return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+    },
+    onClick(){
+      this.$alert('<strong>密钥：<span style="bold" title="0x790a27889427bffaa613b77db49fd4b1517cdd85692b5abb071a84ffd7e38418">****************************</span> 已被储存</strong>', '密钥信息', {
+        dangerouslyUseHTMLString: true
+      });
     }
   },
   mounted () {
@@ -157,7 +162,7 @@ export default {
       this.tableData.push({
         market: "YMHC/ETH",
         sell: value + " ETH",
-        buy: value + " ETH"
+        buy: value*0.8 + " ETH"
       })
     })
     axios.post('http://115.159.111.90:8000/api/getPriceLog', {
@@ -169,7 +174,7 @@ export default {
       this.tableData.push({
         market: "LYB/ETH",
         sell: value + " ETH",
-        buy: value + " ETH"
+        buy: value*0.8 + " ETH"
       })
     })
   }
