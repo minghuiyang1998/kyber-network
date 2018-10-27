@@ -47,6 +47,17 @@ export const constantRouterMap = [
       component: () => import('@/views/info/index')
     }]
   },
+  {
+    path: '/swap',
+    component: Layout,
+    redirect: '/swap/index',
+    name: 'Swap',
+    hidden: true,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/swap/index')
+    }]
+  },
   { path: '*', redirect: '/404', hidden: true }
 ]
 
