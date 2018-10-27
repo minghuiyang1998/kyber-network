@@ -216,13 +216,15 @@ export default {
     this.$http.post("http://115.159.111.90:8000/api/getBalance", JSON.stringify(dic), { headers: "Content-Type:application/json" }).then(function(response) {
       console.log(response.body)
       var arr = response.body
+      var icons = ['ABT','ADX','AST','BNB','CVC']
       for (var i = 0, len = arr.length; i < len; i++) {
 
         var dic = {}
         dic.id = arr[i].id
         dic.name = arr[i].coin.name
         dic.balance = arr[i].value
-        dic.icon = "ABT"
+        dic.icon = icons.pop()
+        arr[i].icon = dic.icon
 
         this.options.push(dic);
       }
@@ -230,13 +232,13 @@ export default {
       dic1.id = arr[0].id
       dic1.name = arr[0].coin.name
       dic1.balance = arr[0].value
-      dic1.icon = "ABT"
+      dic1.icon = arr[0].icon
       this.value = dic1;
       var dic2 = {}
       dic2.id = arr[1].id
       dic2.name = arr[1].coin.name
       dic2.balance = arr[1].value
-      dic2.icon = "ABT"
+      dic2.icon = arr[1].icon
       this.value2 = dic2;
     }).catch(function(error) {
       console.log(error)
