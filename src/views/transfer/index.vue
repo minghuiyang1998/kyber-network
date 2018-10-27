@@ -61,10 +61,16 @@
                   </div>
                 </template>
               </multiselect>
-              <el-input placeholder="请输入内容" v-model="input" class="count-input">
+              <el-input placeholder="请输入内容" v-model="inputBalance" class="count-input">
                 <template slot="append">{{ value.name }}</template>
               </el-input>
               <div class="heading">账户余额</div>
+              <div>
+                <span style="font-size:14px;color:gray">点击交换所有余额</span> 
+                <el-button round style="float: right; padding:3px 10px;color:#ed8223;background-color:#e2e2e2" @click="balanceClick">{{ value.balance }}</el-button>
+              </div>
+              <el-button class="submit-button" style="padding:3px 10px;color:#fafafa;background-color:#ed8223" @click="transfer">转账</el-button>
+
             </el-col>
           </el-row>
         </div>
@@ -86,8 +92,21 @@ export default {
         { name: 'CC', balance: '1.213', icon: 'AST' },
         { name: 'DC', balance: '0.432', icon: 'BNB' },
         { name: 'EC', balance: '0.133', icon: 'CVC' }
-      ]
+      ],
+      inputBalance: ''
     };
+  },
+  methods: {
+    balanceClick() {
+      this.inputBalance = this.value.balance;
+    },
+    transfer(){
+      this.$notify({
+        title: '成功',
+        message: '这是一条成功的提示消息',
+        type: 'success'
+      });
+    }
   }
 }
 </script>
@@ -154,5 +173,13 @@ h1 {
 }
 .count-input {
   margin: 30px 0 30px 0
+}
+.submit-button {
+  width: 160px;
+  height: 50px;
+  margin: 50px 0 0 0;
+  color:#fafafa;
+  background-color:#ed8223;
+  font-size: 20px
 }
 </style>
