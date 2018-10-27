@@ -17,8 +17,8 @@
         <p style="font-size:14px;widht:80px;text-overflow:ellipsis;overflow:hidden;color:gray">{{walletAddress}}</p>
         <div>我的余额</div>
         <el-radio-group v-model="radio2" class="check-box" @change="radioChange">
-          <el-radio v-for="(value,index) in coins" :label="index" class="check-item" style="margin-left:0px;">{{value}}
-            <div style="font-size:12px">{{balance[index]}}</div>
+          <el-radio v-for="(value,index) in options" :label="index" class="check-item" style="margin-left:0px;">{{options[index].name}}
+            <div style="font-size:12px">{{options[index].balance}}</div>
           </el-radio>
         </el-radio-group>
       </div>
@@ -27,29 +27,88 @@
         <div style="display:flex;flex-direction:row;margin:10px;">
           <div>
             <div style="margin:5px;">From</div>
-            <el-select v-model="select_value" placeholder="请选择" @change="fromSelect">
-              <el-option v-for="(value,index) in coins" :key="value" :label="value" :value="value">
-              </el-option>
-            </el-select>
+            
+            <multiselect 
+                v-model="value" 
+                placeholder="选择币种" 
+                label="name" 
+                track-by="name" 
+                :options="options" 
+                :option-height="200"
+                :custom-label="customLabel" 
+                :show-labels="false"
+                @select="fromSelect" >
+                <template slot="singleLabel" slot-scope="props">
+                  <div class="display-container">
+                    <div class="coin-icon">
+                      <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
+                    </div>
+                    <div class="coin-info">
+                      <div class="option-title">{{ props.option.name }}</div>
+                      <div class="option-detail">{{ `${props.option.balance}  ${props.option.name}` }}</div>
+                    </div>
+                  </div>
+                </template>
+                <template slot="option" slot-scope="props">
+                  <div class="display-container">
+                    <div class="coin-icon" style="">
+                      <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
+                    </div>
+                    <div class="coin-info">
+                      <div class="option-title">{{ props.option.name }}</div>
+                      <div class="option-detail">{{ `${props.option.balance}  ${props.option.name}` }}</div>
+                    </div>
+                  </div>
+                </template>
+              </multiselect>
             <el-input v-model="input_balance" placeholder="0" class="balance_input" style="width:195px;border:0;margin-top:20px;">
-              <template slot="append">{{select_value}}</template>
+              <template slot="append">{{value.name}}</template>
             </el-input>
             <div style="margin-top:10px;">
               钱包余额
             </div>
             <div>
               <span style="font-size:14px;color:gray">点击交换所有余额</span> 
-              <el-button round style="padding:3px 10px;color:#ed8223;background-color:#e2e2e2" @click="balanceClick">{{balance[select_index]}}</el-button>
+              <el-button round style="padding:3px 10px;color:#ed8223;background-color:#e2e2e2" @click="balanceClick">{{value.balance}}</el-button>
             </div>
           </div>
-          <div>
+          <div style="margin-left:10px;">
             <div style="margin:5px;">To</div>
-            <el-select v-model="to_select_value" placeholder="请选择" @change="toSelect">
-              <el-option v-for="(value,index) in coins" :key="value" :label="value" :value="value">
-              </el-option>
-            </el-select>
+            <multiselect 
+                v-model="value2" 
+                placeholder="选择币种" 
+                label="name" 
+                track-by="name" 
+                :options="options" 
+                :option-height="200"
+                :custom-label="customLabel" 
+                :show-labels="false"
+                @select="toSelect" >
+                <template slot="singleLabel" slot-scope="props">
+                  <div class="display-container">
+                    <div class="coin-icon">
+                      <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
+                    </div>
+                    <div class="coin-info">
+                      <div class="option-title">{{ props.option.name }}</div>
+                      <div class="option-detail">{{ `${props.option.balance}  ${props.option.name}` }}</div>
+                    </div>
+                  </div>
+                </template>
+                <template slot="option" slot-scope="props">
+                  <div class="display-container">
+                    <div class="coin-icon" style="">
+                      <svg-icon :icon-class="props.option.icon" style="width: 60%; height: 60%;"></svg-icon>
+                    </div>
+                    <div class="coin-info">
+                      <div class="option-title">{{ props.option.name }}</div>
+                      <div class="option-detail">{{ `${props.option.balance}  ${props.option.name}` }}</div>
+                    </div>
+                  </div>
+                </template>
+              </multiselect>
             <el-input v-model="to_input_balance" placeholder="0" class="balance_input" style="width:195px;border:0;margin-top:20px;">
-              <template slot="append">{{to_select_value}}</template>
+              <template slot="append">{{value2.name}}</template>
             </el-input>
             
           </div>
@@ -79,25 +138,34 @@ export default {
       input_balance: "",
       to_select_value:"",
       to_select_index:"",
-      to_input_balance:""
+      to_input_balance:"",
+      options: [
+        { name: 'AC', balance: '1.123', icon: 'ABT' },
+        { name: 'BC', balance: '0.123', icon: 'ADX' },
+        { name: 'CC', balance: '1.213', icon: 'AST' },
+        { name: 'DC', balance: '0.432', icon: 'BNB' },
+        { name: 'EC', balance: '0.133', icon: 'CVC' }
+      ],
+      value:{ name: 'AC', balance: '1.123', icon: 'ABT' },
+      value2:{ name: 'BC', balance: '0.123', icon: 'ADX' }
     };
   },
   methods: {
     fromSelect(value) {
       console.log(value);
-      var index = this.coins.indexOf(value)
+      var index = this.options.indexOf(value)
       console.log(index);
       this.select_index = index
       this.radio2 = index
       this.input_balance = 0
     },
     balanceClick() {
-      this.input_balance = this.balance[this.select_index]
+      this.input_balance = this.options[this.select_index].balance
     },
     radioChange(value) {
       console.log(value)
-      this.select_index = value;
-      this.select_value = this.coins[value];
+      this.select_index = value
+      this.value = this.options[value];
       this.input_balance = 0
     },
     toSelect(value){
@@ -136,7 +204,10 @@ h1 {
 .radio {
   margin: 50px
 }
-
+.display-container {
+  height: 50px;
+  display: flex;
+}
 .container {
   display: flex;
   flex-direction: row;
@@ -174,7 +245,25 @@ h1 {
   border-radius: 30px;
   box-shadow: 1px black;
 }
-
+.coin-icon {
+  width: 50px;
+  display: flex;
+  justify-content: center; /* 水平居中 */
+  align-items: center;     /* 垂直居中 */
+}
+.coin-info {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center; /* 水平居中 */
+}
+.option-title {
+  font-size: 24px;
+  margin-bottom: 3px
+}
+.option-detail {
+  font-size: 14px;
+}
 .check-item.is-checked {
   border: 1px solid #ed8223;
 }
