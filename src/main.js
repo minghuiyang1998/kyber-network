@@ -13,13 +13,18 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import router from './router'
 import store from './store'
+import VueResource from 'vue-resource'
 
 import '@/icons' // icon
 import '@/permission' // permission control
 
+
 Vue.use(ElementUI, { locale })
 Vue.use(VCharts)
 Vue.component('multiselect', Multiselect)
+Vue.use(VueResource)
+Vue.http.options.emulateHTTP = true
+Vue.http.options.emulateJSON = true
 
 Vue.config.productionTip = false
 
