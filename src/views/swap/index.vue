@@ -140,6 +140,8 @@ export default {
     },
     balanceClick() {
       this.input_balance = this.options[this.select_index].balance
+      var rate = this.rates[this.value.id - 1][this.value2.id - 1]
+      this.to_input_balance = parseInt(this.input_balance*rate)
     },
     radioChange(value) {
       console.log(value)
